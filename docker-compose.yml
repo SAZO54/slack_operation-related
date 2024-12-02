@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - ./instance:/app/instance
+    # env_file:
+    #   - .env
+    environment:
+      - FLASK_ENV=production  # デバッグモードを無効にする
+      - FLASK_CONFIG=app.config.ProductionConfig
+    # command: python run.py --host=0.0.0.0 --reload
+    command: python run.py
